@@ -1,4 +1,5 @@
 const prompt = require("prompt-sync")();
+let fs = require("fs");
 
 // 1. Conditional Statements (if-else)
 console.log("\n(1️) Conditional Statements (if-else)");
@@ -54,15 +55,35 @@ if (guestList.includes(guestName)) {
 
 // 5. JSON (JavaScript Object Notation)
 console.log("\n(5) JSON");
-const weatherForecast = {
-  date: "2025-06-22",
-  temperature: "34 degree celcius",
-  conditions: "Partly Cloudy",
-  humidity: "60%",
-};
 
-console.log("Weather Forecast:");
-console.log(`Date: ${weatherForecast.date}`);
-console.log(`Temperature: ${weatherForecast.temperature}`);
-console.log(`Conditions: ${weatherForecast.conditions}`);
-console.log(`Humidity: ${weatherForecast.humidity}`);
+fs.readFile("weatherInfo.json", "utf8", (err, data) => {
+  if (err) {
+    console.error("Error reading file:", err);
+    return;
+  }
+  let weatherData = JSON.parse(data);
+  console.log("Weather Data:", weatherData);
+});
+
+// Response
+
+// Weather Data: [
+//   {
+//     date: '18-06-2025',
+//     temperature: 26,
+//     condition: 'Sunny',
+//     humidity: 65
+//   },
+//   {
+//     date: '19-06-2025',
+//     temperature: 28,
+//     condition: 'Partly Cloudy',
+//     humidity: 70
+//   },
+//   {
+//     date: '20-06-2025',
+//     temperature: 30,
+//     condition: 'Rainy',
+//     humidity: 80
+//   }
+// ]
